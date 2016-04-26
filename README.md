@@ -1,4 +1,4 @@
-# Android-Galllery-Sample
+# Awesome Android Gallery
 Open Source intelligent mobile gallery app that displays all your best photos.
 
 Feature Includes :- 
