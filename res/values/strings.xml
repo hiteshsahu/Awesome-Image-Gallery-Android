@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
  Copyright 2014 The Android Open Source Project
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +15,19 @@
  limitations under the License.
 -->
 <resources>
-    <string name="picture">Picture</string>
-    <string name="description_info">Info</string>
-    <string name="request_permission">This sample needs camera permission.</string>
-    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+
+    <string name="app_name">Awesome Gallery </string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>
+
+    <string-array name="drawer_list_array">
+        <item>Gallery</item>
+        <item>Folders</item>
+        <item>Editor</item>
+        <item>Fav</item>
+        <item>History</item>
+        <item>Preferences</item>
+        <item>About</item>
+    </string-array>
+
 </resources>

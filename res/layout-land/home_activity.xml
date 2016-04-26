@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- The navigation drawer -->
+
+    <LinearLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#424242"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/profile_detail"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" >
+
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_above="@+id/user_name"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_above="@+id/email_id"
+                android:layout_margin="2dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="bottom"
+                android:singleLine="true"
+                android:text="User Name"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/email_id"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:singleLine="true"
+                android:text="abc@ef.com"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/left_drawer_child"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frag_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/left_drawer" >
+    </FrameLayout>
+
+</RelativeLayout>

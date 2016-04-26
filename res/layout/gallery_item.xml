@@ -6,8 +6,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher" >
     </ImageView>
 
