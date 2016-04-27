@@ -284,6 +284,11 @@ public class FullScreenGalleryFragment extends Fragment {
 					if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
 						if (isFromFolders) {
+							
+//							UtilFunctions.switchFragmentWithAnimation(R.id.frag_root,
+//									ImagesInFolder.newInstance(folderIndex), getActivity(),
+//									UtilFunctions.IMAGE_FOLDERS_TAG, AnimationType.SLIDE_RIGHT);
+
 							UtilFunctions.switchFragmentWithAnimation(R.id.frag_root,
 									ImagesInFolder.newInstance(currentPagePosition), getActivity(),
 									UtilFunctions.IMAGE_FOLDERS_TAG, AnimationType.SLIDE_RIGHT);

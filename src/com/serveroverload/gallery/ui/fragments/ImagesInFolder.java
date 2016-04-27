@@ -104,8 +104,11 @@ public class ImagesInFolder extends Fragment implements OnRefreshListener {
 
 					if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-						UtilFunctions.switchContent(R.id.frag_root, UtilFunctions.IMAGE_FOLDERS_TAG, getActivity(),
-								AnimationType.SLIDE_DOWN);
+						UtilFunctions
+								.switchContent(R.id.frag_root,
+										UtilFunctions.IMAGE_FOLDERS_TAG,
+										getActivity(),
+										AnimationType.SLIDE_LEFT);
 
 					}
 					return true;

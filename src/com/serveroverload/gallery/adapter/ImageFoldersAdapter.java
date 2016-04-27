@@ -48,7 +48,7 @@ public class ImageFoldersAdapter extends BaseAdapter {
 
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-			convertView = inflater.inflate(R.layout.gallery_item, null);
+			convertView = inflater.inflate(R.layout.folder_item, null);
 		}
 
 		((TextView) convertView.findViewById(R.id.textView)).setText(GalleryHelper.keyList.get(position));
