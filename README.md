@@ -11,6 +11,8 @@ Feature Includes :-
 - Delete Images
 - Play Gifs
 - Custom Grid with 13+ animation to choose from
+- Pinch to zoom Images
+- Crash Log reporting
 
  ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/gallery_view.png "Flawless allery")
  ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/folderView.png "FolderView")
