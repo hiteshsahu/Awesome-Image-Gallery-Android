@@ -10,3 +10,11 @@ Feature Includes :-
 - Share Images
 - Delete Images
 - Play Gifs
+- Custom Grid with 13+ animation to choose from
+
+ ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/gallery_view.png "Flawless allery")
+ ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/folderView.png "FolderView")
+
+ ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/full_screen_gallery.png "Full screen gallery")
+ ![Android gallery sample](https://github.com/hiteshsahu/AwesomeAndroid-Gallery/blob/master/Art/image_info.png "Image Info")
+
