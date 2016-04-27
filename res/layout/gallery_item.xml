@@ -20,10 +20,10 @@
         android:background="#000000"
         android:ellipsize="start"
         android:gravity="bottom"
-        android:singleLine="true"
+        android:maxLines="3"
         android:text="Description"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+         />
 
 </FrameLayout>
