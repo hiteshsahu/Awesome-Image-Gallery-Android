@@ -1,32 +1,29 @@
-apply plugin: 'com.android.application'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
-
-    defaultConfig {
-        applicationId "com.example.test"
-        minSdkVersion 14
-        targetSdkVersion 23
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_7
-            targetCompatibility JavaVersion.VERSION_1_7
-        }
+buildscript {
+    repositories {
+        jcenter()
     }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-dependencies {
-    compile 'com.android.support:support-v4:23.4.0'
-    compile files('libs/metadata-extractor-2.8.1.jar')
-    compile files('libs/xmpcore-5.1.2.jar')
-    compile 'com.twotoasters.jazzylistview:library:1.2.1'
-    compile 'com.twotoasters.jazzylistview:library-recyclerview:1.2.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url 'http://dl.bintray.com/amulyakhare/maven' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Awesome Image Gallery</string>
+    <string name="action_settings">Settings</string>
+    <item name="is_portrait" type="bool">true</item>
+</resources>

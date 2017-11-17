@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="1dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="2dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="@dimen/cardview_default_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/list_container_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:minHeight="150dp"
+                android:scaleType="centerCrop"
+                android:transitionName="list_item_image" />
+
+            <TextView
+                android:id="@+id/mediaName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_image"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="1.6"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:transitionName="list_item_title" />
+
+            <TextView
+                android:id="@+id/product_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mediaName"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:gravity="left"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:shadowColor="#000000"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="1.6"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:transitionName="list_item_desc" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/overflow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:minHeight="200dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:scrollHorizontally="true"
+            android:shadowColor="@color/colorAccent"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:text="&#8942;"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </FrameLayout>
+</android.support.v7.widget.CardView>

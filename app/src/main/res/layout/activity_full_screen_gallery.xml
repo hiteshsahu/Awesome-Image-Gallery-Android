@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background">
+
+    <com.hiteshsahu.awesome_gallery.view.widget.ExtendedViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="#70000000"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/canvas"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:src="@android:drawable/ic_menu_edit"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:src="@android:drawable/ic_menu_share"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+</FrameLayout>
