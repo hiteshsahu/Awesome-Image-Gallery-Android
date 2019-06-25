@@ -4,7 +4,7 @@ Open Source intelligent mobile gallery app that displays all your best photos.
 
 ## Update 2019
 
-Now supports Kotlin with Andoird 28
+### Now supports Kotlin with Andoird 28
 
 
 Feature Includes :- 
