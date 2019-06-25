@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hiteshsahu.awesome_gallery">
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -8,11 +9,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:authorities="com.hiteshsahu.awesome_gallery.fileprovider"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.hiteshsahu.awesome_gallery.view.ImageGalleryActivity"
             android:label="@string/app_name"
@@ -33,6 +37,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/aig_fileprovider"/>
+        </provider>
+
+
+
     </application>
 
 </manifest>

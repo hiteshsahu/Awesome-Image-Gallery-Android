@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Awesome-Image-Gallery-Android.iml" filepath="$PROJECT_DIR$/Awesome-Image-Gallery-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/AwesomeImageGallery.iml" filepath="$PROJECT_DIR$/AwesomeImageGallery.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

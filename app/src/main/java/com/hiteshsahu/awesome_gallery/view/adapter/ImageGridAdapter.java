@@ -27,11 +27,10 @@ import com.hiteshsahu.awesome_gallery.util.Utils;
 public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-
+    private int lastPosition = -1;
     private final GalleryItemClickListener mListener;
-
-
     private final BitmapRequestBuilder<String, PaletteBitmap> glideRequest;
+
     private final
     @ColorInt
     int defaultColor;
@@ -52,14 +51,9 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     // Create new views (invoked by the layout manager)
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                      int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         context = parent.getContext();
-
-        // create a new view
-        // set the view's size, margins, paddings and layout parameters
-
         return new MediaViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_media_gallery, parent, false));
     }
@@ -73,7 +67,6 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         imageHolder.getMediaName().setText(getItem(position).getImageName());
         imageHolder.getMediaDesc().setText(getItem(position).getImagePath());
-
         imageHolder.getMediaName().setSelected(true);
         imageHolder.getMediaDesc().setSelected(true);
 
@@ -115,20 +108,14 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return CenterRepository.getInstance().getImageCollection().getListOfImages().size();
+        return CenterRepository.Companion.getInstance().getImageCollection().getListOfImages().size();
     }
 
 
-    public ImageModel getItem(int position) {
-        return CenterRepository.getInstance().getImageCollection().getImageAt(position);
+    private ImageModel getItem(int position) {
+        return CenterRepository.Companion.getInstance().getImageCollection().getImageAt(position);
     }
 
-    // Allows to remember the last item shown on screen
-    private int lastPosition = -1;
-
-    /**
-     * Here is the key method to apply the animation
-     */
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
