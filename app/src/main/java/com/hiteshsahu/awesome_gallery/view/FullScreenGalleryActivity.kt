@@ -1,24 +1,41 @@
 package com.hiteshsahu.awesome_gallery.view
 
+import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.view.View
+import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import android.widget.Toast
+import android.widget.ViewSwitcher
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import androidx.viewpager2.widget.ViewPager2
 import com.hiteshsahu.awesome_gallery.BuildConfig.APPLICATION_ID
 import com.hiteshsahu.awesome_gallery.modal.CenterRepository
 import com.hiteshsahu.awesome_gallery.view.adapter.GalleryPagerAdapter
+import com.hiteshsahu.awesome_gallery.view.adapter.MyAdapter
+import com.hiteshsahu.awesome_gallery.view.widget.ParallaxPagerTransformer
 import kotlinx.android.synthetic.main.activity_full_screen_gallery.*
 import java.io.File
 
 
+/**
+ * Activity to display image full screen with Pinch to Zoom option
+ */
 class FullScreenGalleryActivity : AppCompatActivity() {
 
     private var galleryAdapter: GalleryPagerAdapter? = null
+    private var fullScreenMode = false;
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.hiteshsahu.awesome_gallery.R.layout.activity_full_screen_gallery)
@@ -33,21 +50,97 @@ class FullScreenGalleryActivity : AppCompatActivity() {
             }*/
 
         val currentPagePosition = intent.getIntExtra(IMAGE_POSITION, 0)
+
+
+
+        // On click
+        mViewPager.setOnItemClickListener {
+
+            // your code
+            if (fullScreenMode) {
+                backFab.visibility = View.VISIBLE
+                window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            } else {
+                backFab.visibility = View.GONE
+                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            }
+            fullScreenMode = !fullScreenMode
+        }
+        // set adapter
+        mViewPager.setPageTransformer(false, ParallaxPagerTransformer(com.hiteshsahu.awesome_gallery.R.id.touchImageView));
         galleryAdapter = GalleryPagerAdapter()
         mViewPager.adapter = galleryAdapter
         mViewPager.currentItem = currentPagePosition
 
 
+
+//        // View Pager 2
+//        val myAdpater = MyAdapter(this)
+//        myViewPager2.orientation = ViewPager2.ORIENTATION_VERTICAL
+//        myViewPager2.adapter = myAdpater
+//        myViewPager2.currentItem = currentPagePosition
+//        myViewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                pagePosition.setText("" + position + "/" + galleryAdapter!!.count)
+//            }
+//
+//            override fun onPageScrollStateChanged(state: Int) {
+//                super.onPageScrollStateChanged(state)
+//            }
+//        })
+
+
+        //Page index
+        pagePosition.setFactory(object : ViewSwitcher.ViewFactory {
+
+            override fun makeView(): View {
+                val pageIndex = TextView(this@FullScreenGalleryActivity)
+                pageIndex.gravity = Gravity.CENTER
+                pageIndex.textSize = 15f
+                pageIndex.setTextColor(Color.WHITE)
+                return pageIndex
+            }
+        })
+
+        val slideInUp = AnimationUtils.loadAnimation(this, com.hiteshsahu.awesome_gallery.R.anim.slide_in_up)
+        val slideOutDown = AnimationUtils.loadAnimation(this, com.hiteshsahu.awesome_gallery.R.anim.slide_out_up)
+
+        pagePosition.inAnimation = slideInUp
+        pagePosition.outAnimation = slideOutDown
+
+        mViewPager.addOnPageChangeListener(object : OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                pagePosition.setText("" + position + "/" + galleryAdapter!!.count)
+            }
+        })
+
+        pagePosition.setText("" + currentPagePosition + "/" + galleryAdapter!!.count)
+
+
+        // edit image
         editImage.setOnClickListener {
             editThisItem(CenterRepository.instance.imageCollection.getImageAt(mViewPager.currentItem).imagePath)
         }
 
+        // share image
         shareImage.setOnClickListener {
             shareThisItem(CenterRepository.instance.imageCollection
                     .getImageAt(mViewPager.currentItem)
                     .imagePath)
         }
 
+        //delete Image
         deleteImage.setOnClickListener {
             deleteThisFile()
         }

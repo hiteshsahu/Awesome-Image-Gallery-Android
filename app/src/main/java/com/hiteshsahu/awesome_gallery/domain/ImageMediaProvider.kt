@@ -13,6 +13,8 @@ class ImageMediaProvider private constructor() {
 
     fun getAllImages(): String? {
 
+         val shortOrder = MediaStore.Images.Media._ID
+
         CenterRepository.instance.imageCollection.listOfImages.clear()
 
         val projection = arrayOf(MediaColumns.DATA, MediaStore.Images.Media.DISPLAY_NAME)
@@ -20,11 +22,11 @@ class ImageMediaProvider private constructor() {
         //Fetch all External SD card Images
         fetchImagesInCursor(AppController.appController!!.contentResolver
                 .query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
-                        null, null, null)!!)
+                        null, null, "$shortOrder DESC")!!)
 
         // Get all Internal SD Card images
         fetchImagesInCursor(AppController.appController!!.contentResolver
-                .query(MediaStore.Images.Media.INTERNAL_CONTENT_URI, projection, null, null, null)!!)
+                .query(MediaStore.Images.Media.INTERNAL_CONTENT_URI, projection, null, null, "$shortOrder DESC")!!)
 
 
         return if (CenterRepository.instance

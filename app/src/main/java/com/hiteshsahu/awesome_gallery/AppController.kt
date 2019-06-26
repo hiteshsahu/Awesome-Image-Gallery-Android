@@ -19,7 +19,6 @@ class AppController : Application() {
 
     companion object {
 
-
         @get:Synchronized
         var appController: AppController? = null
             private set

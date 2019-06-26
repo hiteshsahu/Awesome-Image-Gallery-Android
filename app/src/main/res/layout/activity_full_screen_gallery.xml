@@ -1,54 +1,87 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/cardview_dark_background">
 
     <com.hiteshsahu.awesome_gallery.view.widget.ExtendedViewPager
         android:id="@+id/mViewPager"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="5dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/vector_back" />
+
     <LinearLayout
+        android:id="@+id/controlRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:background="@color/opaque"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:padding="4dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editImage"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:focusable="false"
+            android:layout_marginLeft="5dp"
+            app:backgroundTint="@color/opaque"
+            android:tint="@color/white"
+            android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
-            android:paddingLeft="5dp"
-            android:src="@drawable/vector_edit"
+            app:srcCompat="@drawable/vector_edit"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/shareImage"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center"
-            android:paddingLeft="5dp"
-            android:src="@drawable/vector_share" />
+            android:layout_width="60dp"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="60dp"
+            app:backgroundTint="@color/opaque"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:srcCompat="@drawable/vector_share" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/deleteImage"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:focusable="false"
+            android:layout_marginLeft="5dp"
+            app:backgroundTint="@color/opaque"
+            android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
-            android:paddingLeft="5dp"
-            android:src="@drawable/vector_delete" />
+            app:srcCompat="@drawable/vector_delete" />
+
+
     </LinearLayout>
+
+    <TextSwitcher
+        android:id="@+id/pagePosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.6"
+        android:text="-3°C "
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
 </FrameLayout>

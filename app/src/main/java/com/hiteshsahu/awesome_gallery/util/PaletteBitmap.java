@@ -1,8 +1,8 @@
 package com.hiteshsahu.awesome_gallery.util;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.v7.graphics.Palette;
+import androidx.annotation.NonNull;
+import androidx.palette.graphics.Palette;
 
 public class PaletteBitmap {
     public final Palette palette;

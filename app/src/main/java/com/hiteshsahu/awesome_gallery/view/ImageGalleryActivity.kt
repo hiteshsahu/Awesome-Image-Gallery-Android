@@ -4,16 +4,16 @@ package com.hiteshsahu.awesome_gallery.view
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Build
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import android.provider.MediaStore
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ScaleGestureDetector
 import android.view.View
 import com.bumptech.glide.Glide
-import com.hiteshsahu.awesome_gallery.R
 import com.hiteshsahu.awesome_gallery.domain.BaseAsyncTask
 import com.hiteshsahu.awesome_gallery.domain.LoadMediaTask
 import com.hiteshsahu.awesome_gallery.modal.CenterRepository
@@ -25,22 +25,21 @@ import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.content_gallery.*
 import kotlinx.android.synthetic.main.view_no_media.*
 
+
 /**
- * Created by Hitesh on 28-09-2016.
+ * Activity to display Grid of Images with pinch to change size of images
  */
 class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener {
 
-
-    private var mGridLayoutManager1: RecyclerView.LayoutManager? = null
-    private var mGridLayoutManager2: RecyclerView.LayoutManager? = null
-    private var mGridLayoutManager3: RecyclerView.LayoutManager? = null
-    private var mCurrentLayoutManager: RecyclerView.LayoutManager? = null
+    private var mGridLayoutManager1: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
+    private var mGridLayoutManager2: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
+    private var mGridLayoutManager3: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
+    private var mCurrentLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var mScaleGestureDetector: ScaleGestureDetector? = null
     private var imageGridAdapter: ImageGridAdapter? = null
 
-
     override fun getActivityLayout(): Int {
-        return R.layout.activity_gallery
+        return com.hiteshsahu.awesome_gallery.R.layout.activity_gallery
     }
 
     /**
@@ -54,17 +53,19 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
         // create adpters
         setUpViewEvents()
 
-// laod and render images
+        // laod and render images
         LoadMediaTask(object : BaseAsyncTask.ProgressListener {
             override fun onStarted() {
                 swipeContainer.isRefreshing = true
             }
 
             override fun onCompleted(successMessage: String?) {
+                // after load completed show images
                 renderGridLayout()
             }
 
             override fun onError(errorMessage: String?) {
+                // update UI after error
                 renderGridLayout()
             }
 
@@ -72,26 +73,29 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
     }
 
     override fun setUpViewWithoutPermissions() {
+        // No permission I will show myself out
         finish()
     }
-
 
     private fun setUpViewEvents() {
 
         setSupportActionBar(toolbar)
 
-        //initialize layout managers
-        mGridLayoutManager1 = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
-        mGridLayoutManager2 = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        mGridLayoutManager3 = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        takePic.setOnClickListener {
+            startActivity(Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA))
+        }
 
-        //Staggered Grid style
-        mCurrentLayoutManager = if (resources.getBoolean(R.bool.is_portrait)) {
+        //initialize layout managers
+        mGridLayoutManager1 = androidx.recyclerview.widget.StaggeredGridLayoutManager(1, androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)  // 1 Column
+        mGridLayoutManager2 = androidx.recyclerview.widget.StaggeredGridLayoutManager(2, androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)  // 2 column
+        mGridLayoutManager3 = androidx.recyclerview.widget.StaggeredGridLayoutManager(3, androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)  // 3 Column
+
+        //Staggered Grid style for Landscape
+        mCurrentLayoutManager = if (resources.getBoolean(com.hiteshsahu.awesome_gallery.R.bool.is_portrait)) {
             mGridLayoutManager2
         } else {
             mGridLayoutManager3
         }
-
 
         // reload Images
         swipeContainer.setOnRefreshListener {
@@ -102,7 +106,6 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light)
-
 
         //set scale gesture detector
         mScaleGestureDetector = ScaleGestureDetector(this@ImageGalleryActivity, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
@@ -145,6 +148,7 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
 
         if (CenterRepository.instance.imageCollection.listOfImages.isNotEmpty()) {
 
+            // Hide No Media
             noMedia.visibility = View.GONE
             imageGrid.layoutManager = mCurrentLayoutManager
 
@@ -158,12 +162,17 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
             }
 
         } else {
+            // show No media
             noMedia.visibility = View.VISIBLE
         }
 
-        swipeContainer.setRefreshing(false)
+        // hide loading
+        swipeContainer.isRefreshing = false
     }
 
+    /**
+     *  Naviogate to Full screen gallery
+     */
     override fun onItemSelected(holder: MediaViewHolder, position: Int) {
 
         val intent = Intent(this@ImageGalleryActivity, FullScreenGalleryActivity::class.java)
@@ -188,7 +197,7 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_gallery, menu)
+        menuInflater.inflate(com.hiteshsahu.awesome_gallery.R.menu.menu_gallery, menu)
         return true
     }
 
@@ -199,7 +208,7 @@ class ImageGalleryActivity : BasePermissionActivity(), GalleryItemClickListener 
         val id = item.itemId
 
 
-        return if (id == R.id.action_settings) {
+        return if (id == com.hiteshsahu.awesome_gallery.R.id.action_settings) {
             true
         } else super.onOptionsItemSelected(item)
 
